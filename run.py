@@ -1,4 +1,3 @@
-
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
@@ -66,6 +65,15 @@ def update_sales_worksheet(data):
     sales_worksheet.append_row(data)
     print("Sales worksheet updated successfully.\n")
 
+def update_surplus_worksheet(data):
+    """
+    Update surplus worksheet, add new row with the list data provided
+    """
+    print("Updating surplus worksheet...\n")
+    surplus_worksheet = SHEET.worksheet("surplus")
+    surplus_worksheet.append_row(data)
+    print("surplus worksheet updated successfully.\n")
+
 
 def calculate_surplus_data(sales_row):
     """
@@ -94,7 +102,7 @@ def main():
     data = get_sales_data()
     sales_data = [int(num) for num in data]
     surplus_data=update_sales_worksheet(sales_data)
-
+    update_surplus_worksheet(surplus_data)
 
 print("Welcome to Love Sandwiches Data Automation")
 main()
